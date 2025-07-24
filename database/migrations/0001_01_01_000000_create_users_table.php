@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB; // <--- Asegúrate de importar DB
+use Illuminate\Support\Facades\Hash; // <--- Para encriptar la contraseña
 
 return new class extends Migration
 {
@@ -17,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('photo')->nullable(); // Optional photo field
+            $table->string('role')->default('USUARIO'); // Default role set to 'user'
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,6 +39,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        // ✅ Crear usuario administrador
+        DB::table('users')->insert([
+            'name' => 'Administrador',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('1234'),
+            'role' => 'ADMINISTRADOR',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 
     /**
