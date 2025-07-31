@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AreaAcademinaController;
+use App\Http\Controllers\AreaFundamentalController;
+use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\DepartamentoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +23,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::get('/users', [AuthController::class, 'index']);
         Route::apiResource('/departamentos', DepartamentoController::class);
+        Route::apiResource('/areasFundamentales', AreaFundamentalController::class);
+        Route::apiResource('/areasAcademicas', AreaAcademinaController::class);
+        Route::apiResource('/asignaturas', AsignaturaController::class);
         Route::apiResource('/municipios', MunicipioController::class);
         Route::apiResource('/instituciones', InstitucionController::class);
         Route::post('/upload', [FileController::class, 'subir']);

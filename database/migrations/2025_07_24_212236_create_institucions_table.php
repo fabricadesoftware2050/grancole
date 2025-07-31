@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    
+
     public function up()
     {
         Schema::create('instituciones', function (Blueprint $table) {
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('codigo_icfes')->nullable();
             $table->string('direccion')->nullable();
             $table->string('barrio')->nullable();
+            
             $table->unsignedBigInteger('departamento_id')->nullable();
             $table->unsignedBigInteger('municipio_id')->nullable();
             $table->string('zona')->nullable(); // RURAL / URBANA
@@ -38,6 +39,13 @@ return new class extends Migration
             $table->string('firma_auxiliar')->nullable();
             $table->string('encabezado_membrete')->nullable();
             $table->string('pie_membrete')->nullable();
+            $table->longText('resolucion_creacion')->nullable();
+            $table->longText('encabezado_certificados')->nullable();
+            $table->longText('observaciones_certificados')->nullable();
+            $table->longText('encabezado_constancias')->nullable();
+            $table->longText('eslogan')->nullable();
+            $table->longText('calendario')->default("CALENDARIO A");
+            $table->longText('pie_pagina_general')->nullable();
             $table->string('escudo')->nullable();
             $table->timestamps();
         });

@@ -11,13 +11,20 @@ class FileController extends Controller
     {
         try {
             $request->validate([
-            'file' => 'required|file|max:2048|mimes:jpg,png,gif,svg,doc,docx,pdf,webp', // puedes agregar mimes:jpg,png,pdf según necesites
+            'file' => 'required|file|max:5120|mimes:jpg,png,gif,svg,doc,docx,pdf,webp', // puedes agregar mimes:jpg,png,pdf según necesites
             ]);
 
             $archivo = $request->file('file');
-
-            // Nombre único
             $nombreArchivo = uniqid() . '.' . $archivo->getClientOriginalExtension();
+            if($request->input('filename')){
+                $nombreArchivo = $request->input('filename');
+                $nombreArchivo = basename(parse_url($nombreArchivo, PHP_URL_PATH)); // obtiene "firma_auxiliar_123.png"
+                $nombreArchivo = $nombreArchivo. '.'  . $archivo->getClientOriginalExtension();
+            }
+            if (Storage::disk('public')->exists($nombreArchivo)) {
+                Storage::disk('public')->delete($nombreArchivo);
+            }
+            // Nombre único
 
             // Guardar en public/files usando el disco "public" configurado a public_path('files')
             Storage::disk('public')->put($nombreArchivo, file_get_contents($archivo));

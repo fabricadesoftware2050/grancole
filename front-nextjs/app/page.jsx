@@ -125,6 +125,7 @@ export default function Dashboard() {
                   setIsLoading(false);
                   setIsAuthenticated(false)
                   console.error(err);
+                  router.push('/login')
                   toast.error(
                       `${
                           err.response?.status ===401?'Sesión expirada': err.response?.data?.message || "No se logró la acción"
@@ -986,19 +987,10 @@ if (!mounted) return null;
                           </div>
                           <h4 className="font-semibold text-purple-800">Base de Conocimientos</h4>
                         </div>
-                        <p className="text-sm text-purple-700">Aprende todo lo que necesitas saber de SINAI en cualquier momento.</p>
+                        <p className="text-sm text-purple-700">Aprende todo lo que necesitas saber de GranCole Pro en cualquier momento.</p>
                       </div>
 
-                      {/* Teléfono */}
-                      <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
-                            <Phone className="w-4 h-4 text-white" />
-                          </div>
-                          <h4 className="font-semibold text-green-800">300913455</h4>
-                        </div>
-                        <p className="text-sm text-green-700">Lunes de lunes a viernes de 7:00 a.m. a 12:30 p.m. y de 2:00 a 5:00 p.m.</p>
-                      </div>
+
 
                       {/* Email */}
                       <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
@@ -1006,7 +998,7 @@ if (!mounted) return null;
                           <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center">
                             <Mail className="w-4 h-4 text-white" />
                           </div>
-                          <h4 className="font-semibold text-blue-800">servicioalcliente@siempre.net.co</h4>
+                          <h4 className="font-semibold text-blue-800">servicioalcliente@grancole.com</h4>
                         </div>
                         <p className="text-sm text-blue-700">Todos los mensajes recibidos serán gestionados a través de la plataforma de tickets</p>
                       </div>

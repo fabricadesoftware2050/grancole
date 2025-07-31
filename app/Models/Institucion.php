@@ -33,6 +33,13 @@ class Institucion extends Model
         'firma_auxiliar',
         'encabezado_membrete',
         'pie_membrete',
+        'resolucion_creacion',
+        'encabezado_certificados',
+        'observaciones_certificados',
+        'encabezado_constancias',
+        'eslogan',
+        'pie_pagina_general',
+        'calendario',
         'escudo',
     ];
 }
